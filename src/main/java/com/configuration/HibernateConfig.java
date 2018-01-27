@@ -48,13 +48,12 @@ public class HibernateConfig
 		localSessionFacBuilder.addProperties(hibernateProperties);
 		localSessionFacBuilder.addAnnotatedClass(User.class);
 
-	//	sessionFactory=localSessionFacBuilder.buildSessionFactory();
 		System.out.println("Session Factory Object Created");
 		
 		}
 		catch(Exception e)
 		{
-				//printStackTrace();
+			System.out.println(e.getStackTrace());
 		}
 		return localSessionFacBuilder.buildSessionFactory();
 		

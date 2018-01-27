@@ -24,6 +24,19 @@ public class User implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+    @Column(name="id")
+    private Long id;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Email 
 	@Column(name = "email")
 	private String email;
