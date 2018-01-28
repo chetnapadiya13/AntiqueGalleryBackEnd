@@ -58,16 +58,6 @@ public class User implements Serializable {
 	@Column(name="country")
 	private String country;
 
-	public User(String name, String email, String phone, String address, String password, String country) {
-		this.name = name;
-		this.email = email;
-		this.phone = phone;
-		this.address = address;
-		this.password = password;
-		this.country = country;
-
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -84,8 +74,23 @@ public class User implements Serializable {
 		this.phone = phone;
 	}
 
+	public User() {
+		super();
+	}
+
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public User(Long id, String email, String name, String phone, String address, String password, String country) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.name = name;
+		this.phone = phone;
+		this.address = address;
+		this.password = password;
+		this.country = country;
 	}
 
 	public void setCountry(String country) {

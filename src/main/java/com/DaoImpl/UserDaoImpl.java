@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.Dao.*;
@@ -16,18 +17,6 @@ import com.configuration.HibernateConfig;
 public class UserDaoImpl implements UserDao {
 	@Autowired
 	SessionFactory sessionFactory;
-
-	
-	List<User> userslist;
-
-	public UserDaoImpl() {
-
-		userslist = new ArrayList<User>();
-	//	User user1 = new User("Chetana", "Chetana@space.com", "9408180365", "Mumbai", "password", "india");
-		//User user2 = new User("Jia", "Jia@space.com", "9408180365", "Mumbai", "password", "india");
-		//userslist.add(user1);
-		//userslist.add(user2);
-	}
 	public boolean addUser(User user)
 	{
 		try
@@ -44,24 +33,31 @@ public class UserDaoImpl implements UserDao {
 	
 	@Transactional
 	public List<User> getAllUsers() {
+		
+		List<User> usersList = new ArrayList<User>();
 		try{
 			HibernateConfig hbConfig = new HibernateConfig();
 			SessionFactory session=hbConfig.getSessionFactory();
 			Session ses = session.openSession();
 			Query query=ses.createQuery("from User");
-			List<User> userslist=query.list();
+			usersList = query.list();
 			session.close();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		
-		return userslist;
+		return usersList;
 	}
 
 	@Transactional
 	public User getUser(String email) {
-		Session session=sessionFactory.openSession();
-		User user=(User)session.get(User.class,email);
+		HibernateConfig hbConfig = new HibernateConfig();
+		SessionFactory sessionF=hbConfig.getSessionFactory();
+		Session session=sessionF.openSession();
+		Query query=session.createQuery("from User where email=:emailid");
+		query.setParameter("emailid",email);
+	//	User user=(User)session.get(User.class,email);
+		User user=(User) query.uniqueResult();
 		session.close();
 		return user;
 	}

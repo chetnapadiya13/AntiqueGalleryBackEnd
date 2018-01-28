@@ -2,6 +2,8 @@ package com.Dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.Model.*;
 
 public interface UserDao {
@@ -15,5 +17,4 @@ public interface UserDao {
 	public boolean updateUser(User user);
 
 	public boolean deleteUser(User user);
-
 }
