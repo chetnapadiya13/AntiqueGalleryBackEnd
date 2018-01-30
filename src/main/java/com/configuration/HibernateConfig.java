@@ -12,6 +12,7 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.Model.Supplier;
 import com.Model.User;
 
 @Configuration
@@ -47,6 +48,8 @@ public class HibernateConfig
 		localSessionFacBuilder=new LocalSessionFactoryBuilder(getH2DataSource());
 		localSessionFacBuilder.addProperties(hibernateProperties);
 		localSessionFacBuilder.addAnnotatedClass(User.class);
+		localSessionFacBuilder.addAnnotatedClass(Supplier.class);
+		
 
 		System.out.println("Session Factory Object Created");
 		

@@ -1,6 +1,4 @@
 package com.Model;
-
-
 import java.io.Serializable;
 
 import javax.persistence.Column;

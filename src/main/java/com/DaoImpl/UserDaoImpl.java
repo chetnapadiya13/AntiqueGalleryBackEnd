@@ -4,6 +4,7 @@ import java.util.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.SharedSessionContract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,22 @@ import com.configuration.HibernateConfig;
 
 @Repository("UserDAO")
 public class UserDaoImpl implements UserDao {
+	
 	@Autowired
 	SessionFactory sessionFactory;
+	@Transactional 
 	public boolean addUser(User user)
 	{
+		
 		try
 		{
-			sessionFactory.getCurrentSession().save(user);
+			HibernateConfig hbConfig = new HibernateConfig();
+			SessionFactory sessionfac=hbConfig.getSessionFactory();
+			Session session=sessionfac.openSession();
+			session.beginTransaction();
+			Integer i=(Integer) session.save(user);
+			session.getTransaction().commit();
+			session.close();
 			return true;
 		}
 		catch(Exception e)
@@ -67,13 +77,19 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		try
 		{
-			sessionFactory.getCurrentSession().saveOrUpdate(user);
+			HibernateConfig hbConfig = new HibernateConfig();
+			SessionFactory sessionfac=hbConfig.getSessionFactory();
+			Session session=sessionfac.openSession();
+			session.beginTransaction();
+			session.saveOrUpdate(user);
+			session.getTransaction().commit();
+			session.close();
 			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("Exception Arised:"+e);
-			return false;	
+			return false;
 		}
 
 	}
@@ -83,14 +99,19 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		try
 		{
-			sessionFactory.getCurrentSession().delete(user);
+			HibernateConfig hbConfig = new HibernateConfig();
+			SessionFactory sessionfac=hbConfig.getSessionFactory();
+			Session session=sessionfac.openSession();
+			session.beginTransaction();
+			session.delete(user);
+			session.getTransaction().commit();
+			session.close();
 			return true;
 		}
 		catch(Exception e)
 		{
 			System.out.println("Exception Arised:"+e);
-			return false;	
+			return false;
 		}
-
 	}
 }
