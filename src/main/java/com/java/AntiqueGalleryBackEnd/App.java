@@ -11,7 +11,7 @@ import com.Dao.*;
 public class App {
 	public static void main(String args[])
 	{
-		UserDao userdao=new UserDaoImpl();
+	/*	UserDao userdao=new UserDaoImpl();
 		List<User> userList = userdao.getAllUsers(); 
 		SupplierDao supplierdao= new SupplierDaoImpl();
 		Supplier supplier =new Supplier();
@@ -23,6 +23,6 @@ public class App {
 		System.out.println(userList.get(0).getEmail());
 		  for (User user : userList) {
 		         System.out.println("User: [name : " + user.getName() + ", Email : " +user.getEmail() + " ]");
-		      }
+		      } */
 	}
 }
