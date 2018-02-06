@@ -22,14 +22,8 @@ public class CategoryDaoImpl implements CategoryDao {
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	@Autowired
-	public CategoryDaoImpl(SessionFactory sessionFactory) {
-		super();
-		this.sessionFactory = sessionFactory;
-	}
-	
-	@Bean
-	@Transactional("txName")
+
+	@Transactional//("txName")
 	public void insertCategory(Category category) {
 		try
 		{
@@ -47,8 +41,8 @@ public class CategoryDaoImpl implements CategoryDao {
 		}
 		
 	}
-	@Bean 
-	@Transactional("txName")
+ 
+	@Transactional//("txName")
 	public void updateCategory(int cid) {
 		// TODO Auto-generated method stub
 		try
@@ -67,8 +61,8 @@ public class CategoryDaoImpl implements CategoryDao {
 		}
 		
 	}
-	@Bean
-	@Transactional("txName")
+
+	@Transactional//("txName")
 	public void deleteCategory(int cid) {
 		// TODO Auto-generated method stub
 		try
@@ -86,8 +80,8 @@ public class CategoryDaoImpl implements CategoryDao {
 			System.out.println("Exception Arised:"+e);
 		}
 	}
-	@Bean
-	@Transactional("txName")
+
+	@Transactional//("txName")
 	public void updateCategory(Category category) {
 		// TODO Auto-generated method stub
 		try
@@ -106,8 +100,8 @@ public class CategoryDaoImpl implements CategoryDao {
 		}
 		
 	}
-	@Bean
-	@Transactional("txName")
+
+	@Transactional//("txName")
 	public void deleteCategory(Category category) {
 		// TODO Auto-generated method stub
 		try
@@ -126,22 +120,22 @@ public class CategoryDaoImpl implements CategoryDao {
 		}
 		
 	}
-	 @Autowired
-	@Bean
-	@Transactional("txName")
+	
+
+	@Transactional//("txName")
 	public List<Category> showallCategory() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	 @Autowired
-	@Bean
-	 @Transactional("txName")
+
+
+	 @Transactional//("txName")
 	public Category getCategory(String cid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	 @Autowired
-	@Transactional("txName")
+
+	@Transactional//("txName")
 	public Category getCategory(int cid) {
 		// TODO Auto-generated method stub
 		return null;

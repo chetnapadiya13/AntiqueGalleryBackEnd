@@ -19,7 +19,7 @@ import com.Model.User;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("com.Model")
+@ComponentScan("com")
 public class HibernateConfig 
 {
 	public static SessionFactory sessionFactory = null;
@@ -41,9 +41,11 @@ public class HibernateConfig
 	public SessionFactory getSessionFactory()
 	{
 		LocalSessionFactoryBuilder localSessionFacBuilder=null;
+	
 		try{
 		Properties hibernateProperties=new Properties();
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto","update");
+		hibernateProperties.put("hibernate.temp.use_jdbc_metadata_defaults","false");
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto","none");
 		hibernateProperties.put("hibernate.show_sql", "true");
 		hibernateProperties.put("hibernate.dialect","org.hibernate.dialect.H2Dialect");
 		
@@ -54,7 +56,7 @@ public class HibernateConfig
 		localSessionFacBuilder.addAnnotatedClass(Category.class);
 		localSessionFacBuilder.addAnnotatedClass(Supplier.class);
 		localSessionFacBuilder.addAnnotatedClass(Product.class);
-		
+		sessionFactory=localSessionFacBuilder.buildSessionFactory();
 		System.out.println("Session Factory Object Created");
 		
 		}
@@ -62,13 +64,13 @@ public class HibernateConfig
 		{
 			System.out.println(e.getStackTrace());
 		}
-		return localSessionFacBuilder.buildSessionFactory();
+		return sessionFactory;
 		
 	}
 	
 	//Transaction Bean Object
 	@Autowired 
-	@Bean(name="txName")
+	@Bean //(name="txName")
 	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory)
 	{
 		HibernateTransactionManager hibernateTranMgr=new HibernateTransactionManager();

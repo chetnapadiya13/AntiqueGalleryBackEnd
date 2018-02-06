@@ -21,7 +21,7 @@ public class ProductDaoImpl implements ProductDao{
 
 	@Autowired
 	SessionFactory sessionFactory;
-	@Transactional("txName")
+	@Transactional//("txName")
 	public void insertProduct(Product product) {
 		// TODO Auto-generated method stub
 		try
@@ -40,7 +40,7 @@ public class ProductDaoImpl implements ProductDao{
 		}
 		
 	}
-	@Transactional("txName")
+	@Transactional//("txName")
 	public void updateProduct(String pid) {
 		// TODO Auto-generated method stub
 		try
@@ -59,7 +59,7 @@ public class ProductDaoImpl implements ProductDao{
 		}
 		
 	}
-	@Transactional("txName")
+	@Transactional//("txName")
 	public void deleteProduct(String pid) {
 		// TODO Auto-generated method stub
 		try
@@ -77,7 +77,7 @@ public class ProductDaoImpl implements ProductDao{
 			System.out.println("Exception Arised:"+e);
 		}
 	}
-	@Transactional("txName")
+	@Transactional//("txName")
 	public void updateProduct(Product product) {
 		// TODO Auto-generated method stub
 		try
@@ -96,7 +96,7 @@ public class ProductDaoImpl implements ProductDao{
 		}
 		
 	}
-	@Transactional("txName")
+	@Transactional//("txName")
 	public void deleteProduct(Product product) {
 		// TODO Auto-generated method stub
 		try
@@ -115,12 +115,12 @@ public class ProductDaoImpl implements ProductDao{
 		}
 		
 	}
-	@Transactional("txName")
+	@Transactional//("txName")
 	public List<Product> showallProduct() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Transactional("txName")
+	@Transactional//("txName")
 	public Product getProduct(String pid) {
 		// TODO Auto-generated method stub
 		return null;

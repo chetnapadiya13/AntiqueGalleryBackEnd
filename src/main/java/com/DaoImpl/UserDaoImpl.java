@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao {
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	@Transactional("txName")
+	@Transactional//("txName")
 	public boolean addUser(User user)
 	{
 		
@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 	
-	@Transactional("txName")
+	@Transactional//("txName")
 	public List<User> getAllUsers() {
 		
 		List<User> usersList = new ArrayList<User>();
@@ -61,7 +61,7 @@ public class UserDaoImpl implements UserDao {
 		return usersList;
 	}
 
-	@Transactional("txName")
+	@Transactional//("txName")
 	public User getUser(String email) {
 		HibernateConfig hbConfig = new HibernateConfig();
 		SessionFactory sessionF=hbConfig.getSessionFactory();
@@ -74,7 +74,7 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 
-	@Transactional("txName")
+	@Transactional//("txName")
 	public boolean updateUser(User user) {
 		// TODO Auto-generated method stub
 		try
@@ -96,7 +96,7 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
-	@Transactional("txName")
+	@Transactional//("txName")
 	public boolean deleteUser(User user) {
 		// TODO Auto-generated method stub
 		try

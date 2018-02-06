@@ -20,7 +20,7 @@ public class SupplierDaoImpl implements SupplierDao {
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	@Transactional("txName")
+	@Transactional//("txName")
 	public boolean insertSupp(Supplier supplier) {
 		// TODO Auto-generated method stub
 		try
@@ -40,7 +40,7 @@ public class SupplierDaoImpl implements SupplierDao {
 			return false;
 		}
 	}
-	@Transactional("txName")
+	@Transactional//("txName")
 	public boolean updateSupp(Supplier supplier) {
 		// TODO Auto-generated method stub
 		try
@@ -60,7 +60,7 @@ public class SupplierDaoImpl implements SupplierDao {
 			return false;
 		}
 	}
-	@Transactional("txName")
+	@Transactional//("txName")
 	public boolean deleteSupp(Supplier supplier) {
 		// TODO Auto-generated method stub
 		try
@@ -80,7 +80,7 @@ public class SupplierDaoImpl implements SupplierDao {
 			return false;
 		}
 	}
-	@Transactional("txName")
+	@Transactional//("txName")
 	public List<Supplier> getAllSuppliers() {
 		
 		List<Supplier> supplierList = new ArrayList<Supplier>();
