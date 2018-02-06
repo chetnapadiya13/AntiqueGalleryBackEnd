@@ -8,16 +8,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.Model.Category;
+import com.Model.Product;
 import com.Model.Supplier;
 import com.Model.User;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("com")
+@ComponentScan("com.Model")
 public class HibernateConfig 
 {
 	public static SessionFactory sessionFactory = null;
@@ -47,10 +49,12 @@ public class HibernateConfig
 		
 		localSessionFacBuilder=new LocalSessionFactoryBuilder(getH2DataSource());
 		localSessionFacBuilder.addProperties(hibernateProperties);
+		//localSessionFacBuilder.scanPackages("com.Model");
 		localSessionFacBuilder.addAnnotatedClass(User.class);
+		localSessionFacBuilder.addAnnotatedClass(Category.class);
 		localSessionFacBuilder.addAnnotatedClass(Supplier.class);
+		localSessionFacBuilder.addAnnotatedClass(Product.class);
 		
-
 		System.out.println("Session Factory Object Created");
 		
 		}
@@ -64,10 +68,11 @@ public class HibernateConfig
 	
 	//Transaction Bean Object
 	@Autowired 
-	@Bean
+	@Bean(name="txName")
 	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory)
 	{
-		HibernateTransactionManager hibernateTranMgr=new HibernateTransactionManager(sessionFactory);
+		HibernateTransactionManager hibernateTranMgr=new HibernateTransactionManager();
+		hibernateTranMgr.setSessionFactory(sessionFactory);
 		return hibernateTranMgr;
 	}
 	

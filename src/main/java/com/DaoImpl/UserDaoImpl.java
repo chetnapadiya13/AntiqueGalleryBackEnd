@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.SharedSessionContract;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,12 +15,13 @@ import com.Dao.*;
 import com.Model.User;
 import com.configuration.HibernateConfig;
 
-@Repository("UserDAO")
+@Repository("userDao")
 public class UserDaoImpl implements UserDao {
 	
 	@Autowired
 	SessionFactory sessionFactory;
-	@Transactional 
+	
+	@Transactional("txName")
 	public boolean addUser(User user)
 	{
 		
@@ -41,7 +43,7 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 	
-	@Transactional
+	@Transactional("txName")
 	public List<User> getAllUsers() {
 		
 		List<User> usersList = new ArrayList<User>();
@@ -59,7 +61,7 @@ public class UserDaoImpl implements UserDao {
 		return usersList;
 	}
 
-	@Transactional
+	@Transactional("txName")
 	public User getUser(String email) {
 		HibernateConfig hbConfig = new HibernateConfig();
 		SessionFactory sessionF=hbConfig.getSessionFactory();
@@ -72,7 +74,7 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 
-	@Transactional
+	@Transactional("txName")
 	public boolean updateUser(User user) {
 		// TODO Auto-generated method stub
 		try
@@ -94,7 +96,7 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
-	@Transactional
+	@Transactional("txName")
 	public boolean deleteUser(User user) {
 		// TODO Auto-generated method stub
 		try

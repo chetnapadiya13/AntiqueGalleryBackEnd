@@ -1,51 +1,34 @@
 package com.Model;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
 //import org.hibernate.validator.constraints.*;
-
+@Component 
 @Entity
-@Table(name = "Supplier")
-
+@Table(name="Supplier")
 public class Supplier  implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	
-	
 	@Id
-    @Column(name="id")
-	private int id;
-	
-	@Column(name = "sid")
-	private String sid;
-	
-	@Column(name = "supplierName")
+	private int sid;
 	private String supplierName;
-	
-	public Supplier(){super();}
-	public Supplier(int id,String sid,String supplierName)
-	{
-		super();
-		this.id=id;
-		this.sid=sid;
-		this.supplierName=supplierName;
-	}
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public String getSid() {
+	@OneToMany(targetEntity=Product.class,fetch=FetchType.EAGER,mappedBy="supplier")
+	private Set<Product> products=new HashSet<Product>(0);
+	public int getSid() {
 		return sid;
 	}
-	public void setSid(String sid) {
+	public void setSid(int sid) {
 		this.sid = sid;
 	}
 	public String getSupplierName() {
@@ -54,5 +37,11 @@ public class Supplier  implements Serializable {
 	public void setSupplierName(String supplierName) {
 		this.supplierName = supplierName;
 	}
-
+	public Set<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+	
 }

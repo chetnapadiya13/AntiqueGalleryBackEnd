@@ -15,8 +15,8 @@ public class App {
 		List<User> userList = userdao.getAllUsers(); 
 		SupplierDao supplierdao= new SupplierDaoImpl();
 		Supplier supplier =new Supplier();
-		supplier.setId(101);
-		supplier.setSid("s101");
+	//	supplier.setId(101);
+		supplier.setSid(101);
 		supplier.setSupplierName("chetana");
 		System.out.println(supplierdao.insertSupp(supplier));
 		System.out.println(userList.size());

@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>AntiqueGalleryBackEnd</name>
+<name>AntiqueGalleryBackEnd</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -65,8 +65,15 @@
     <artifactId>h2</artifactId>
     <version>1.4.196</version>
 </dependency>
-
-
-
+	 <dependency>
+	  <groupId>org.hibernate</groupId>
+	  <artifactId>hibernate-entitymanager</artifactId>
+	  <version>4.1.8.Final</version>
+	 </dependency>
+	 <dependency>
+	  <groupId>unknown.binary</groupId>
+	  <artifactId>h2-1.4.192</artifactId>
+	  <version>SNAPSHOT</version>
+	 </dependency>
 	</dependencies>
 </project>
