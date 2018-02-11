@@ -16,6 +16,7 @@ import com.Model.Category;
 import com.Model.Product;
 import com.Model.Supplier;
 import com.Model.User;
+import com.Model.UserProfile;
 
 @Configuration
 @EnableTransactionManagement
@@ -53,6 +54,7 @@ public class HibernateConfig
 		localSessionFacBuilder.addProperties(hibernateProperties);
 		//localSessionFacBuilder.scanPackages("com.Model");
 		localSessionFacBuilder.addAnnotatedClass(User.class);
+		localSessionFacBuilder.addAnnotatedClass(UserProfile.class);
 		localSessionFacBuilder.addAnnotatedClass(Category.class);
 		localSessionFacBuilder.addAnnotatedClass(Supplier.class);
 		localSessionFacBuilder.addAnnotatedClass(Product.class);

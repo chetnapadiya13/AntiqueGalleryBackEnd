@@ -116,4 +116,24 @@ public class UserDaoImpl implements UserDao {
 			return false;
 		}
 	}
+
+	public User findById(int id) {
+		HibernateConfig hbConfig = new HibernateConfig();
+		SessionFactory sessionF=hbConfig.getSessionFactory();
+		Session session=sessionF.openSession();
+		Query q= session.createQuery("from User where id="+id);
+		User user = (User) q.getSingleResult();
+		session.close();
+        return user;
+    }
+ 
+    public User findBySSO(String sso) {
+    	HibernateConfig hbConfig = new HibernateConfig();
+		SessionFactory sessionF=hbConfig.getSessionFactory();
+		Session session=sessionF.openSession();
+		Query q= session.createQuery("from User where ssoId="+sso);
+		User user = (User) q.getSingleResult();
+		session.close();
+        return user;
+    }
 }

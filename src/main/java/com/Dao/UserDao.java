@@ -20,4 +20,8 @@ public interface UserDao {
 	public boolean updateUser(User user);
 
 	public boolean deleteUser(User user);
+	
+	User findById(int id);
+    
+    User findBySSO(String sso);
 }

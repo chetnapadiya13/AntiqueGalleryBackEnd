@@ -1,9 +1,13 @@
 package com.DaoImpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -123,22 +127,33 @@ public class CategoryDaoImpl implements CategoryDao {
 	
 
 	@Transactional//("txName")
-	public List<Category> showallCategory() {
+	public HashMap<Integer,String> showallCategory() {
 		// TODO Auto-generated method stub
-		return null;
+		HibernateConfig hbConfig = new HibernateConfig();
+		sessionFactory=hbConfig.getSessionFactory();
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		List<Category> categoryList = (List<Category>) session.createQuery("from Category").list();
+		HashMap<Integer,String> categoryMap = new HashMap<Integer, String>();
+		for(Category category:categoryList)
+		{
+			categoryMap.put(category.getCid(),category.getCname());
+		}
+		session.close();
+		return categoryMap;
 	}
 
 
 	 @Transactional//("txName")
-	public Category getCategory(String cid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Transactional//("txName")
 	public Category getCategory(int cid) {
-		// TODO Auto-generated method stub
-		return null;
+		HibernateConfig hbConfig = new HibernateConfig();
+		sessionFactory=hbConfig.getSessionFactory();
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		Query  cri = session.createQuery("from Category where cid="+cid);
+		Category category = (Category) cri.getSingleResult();
+		return category;
 	}
-
-}
+	 
+}	 
+	 

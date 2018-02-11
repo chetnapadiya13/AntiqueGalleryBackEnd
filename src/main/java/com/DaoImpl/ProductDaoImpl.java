@@ -21,6 +21,7 @@ public class ProductDaoImpl implements ProductDao{
 
 	@Autowired
 	SessionFactory sessionFactory;
+	
 	@Transactional//("txName")
 	public void insertProduct(Product product) {
 		// TODO Auto-generated method stub

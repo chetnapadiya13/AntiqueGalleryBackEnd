@@ -42,12 +42,10 @@ public class UserDaoTest {
 		void testadduser()
 		{
 			User user=new User();
-			user.setId(101l);
+			user.setId(10);
 			user.setPassword("123");
 			user.setEmail("xyz@abc.com");
-			user.setPhone("365734");
-			user.setCountry("india");
-			user.setAddress("mumbai");
+			
 			
 			assertTrue("Problem in Adding user",userDao.addUser(user));
 			
@@ -60,11 +58,9 @@ public class UserDaoTest {
 			{
 				System.out.println("User Id:"+user.getId());
 				System.out.println("User Email :"+user.getEmail());
-				System.out.println("User Name :"+user.getName());
+				System.out.println("User Name :"+user.getFirstName());
 				System.out.println("User password :"+user.getPassword());
-				System.out.println("User phone :"+user.getPhone());
-				System.out.println("User  address :"+user.getAddress());
-				System.out.println("User country :"+user.getCountry());
+				
 				
 			}
 			
@@ -83,12 +79,10 @@ public class UserDaoTest {
 		void testupdateuser()
 		{
 			User user=new User();
-			user.setId(101l);
+			user.setId(101);
 			user.setPassword("123");
 			user.setEmail("xyz@abc.com");
-			user.setPhone("365734");
-			user.setCountry("india");
-			user.setAddress("mumbai");
+			
 			
 			assertTrue("Problem in updating user",userDao.updateUser(user));
 			
@@ -98,12 +92,10 @@ public class UserDaoTest {
 		void testdeleteuser()
 		{
 			User user=new User();
-			user.setId(101l);
+			user.setId(101);
 			user.setPassword("123");
 			user.setEmail("xyz@abc.com");
-			user.setPhone("365734");
-			user.setCountry("india");
-			user.setAddress("mumbai");
+			
 			
 			assertTrue("Problem in deleting user",userDao.deleteUser(user));
 			

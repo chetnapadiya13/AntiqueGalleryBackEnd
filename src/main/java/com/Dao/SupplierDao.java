@@ -1,5 +1,6 @@
 package com.Dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -15,5 +16,6 @@ public interface SupplierDao {
 	public boolean insertSupp(Supplier supplier);
 	public boolean updateSupp(Supplier supplier);
 	public boolean deleteSupp(Supplier supplier);
-	public List<Supplier> getAllSuppliers();
+	public Supplier getSupplier(int sid);
+	public HashMap<Integer,String> getAllSuppliers();
 }
