@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.Dao.ProductDao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class ProductDaoImpl implements ProductDao{
 		
 	}
 	@Transactional//("txName")
-	public void updateProduct(String pid) {
+	public void updateProduct(int pid) {
 		// TODO Auto-generated method stub
 		try
 		{
@@ -61,7 +62,7 @@ public class ProductDaoImpl implements ProductDao{
 		
 	}
 	@Transactional//("txName")
-	public void deleteProduct(String pid) {
+	public void deleteProduct(int pid) {
 		// TODO Auto-generated method stub
 		try
 		{
@@ -118,13 +119,23 @@ public class ProductDaoImpl implements ProductDao{
 	}
 	@Transactional//("txName")
 	public List<Product> showallProduct() {
-		// TODO Auto-generated method stub
-		return null;
+		HibernateConfig hbConfig = new HibernateConfig();
+		SessionFactory sessionF=hbConfig.getSessionFactory();
+		Session session=sessionF.openSession();
+		Query query=session.createQuery("from product");
+		List<Product> product=query.list();
+		session.close();
+		return product;
 	}
 	@Transactional//("txName")
-	public Product getProduct(String pid) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product getProduct(int pid) {
+		HibernateConfig hbConfig = new HibernateConfig();
+		SessionFactory sessionF=hbConfig.getSessionFactory();
+		Session session=sessionF.openSession();
+		Query query=session.createQuery("from Product where pid=:pid");
+		query.setParameter("pid",pid);
+		Product product=(Product) query.uniqueResult();
+		return product;
 	}
 
 }

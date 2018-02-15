@@ -131,8 +131,9 @@ public class UserDaoImpl implements UserDao {
     	HibernateConfig hbConfig = new HibernateConfig();
 		SessionFactory sessionF=hbConfig.getSessionFactory();
 		Session session=sessionF.openSession();
-		Query q= session.createQuery("from User where ssoId="+sso);
-		User user = (User) q.getSingleResult();
+		Query q= session.createQuery("from User where ssoId= '"+sso+"'");
+		//q.setParameter(1, sso);
+		User user = (User) q.uniqueResult();
 		session.close();
         return user;
     }

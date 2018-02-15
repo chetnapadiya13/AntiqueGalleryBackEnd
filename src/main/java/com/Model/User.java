@@ -1,5 +1,6 @@
 package com.Model;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.h2.store.Data;
 
 @Entity
 @Table(name="APP_USER")
@@ -35,7 +38,28 @@ public class User {
  
     @Column(name="EMAIL", nullable=false)
     private String email;
- 
+    
+    @Column(name="GENDER")
+    private String gender;
+    
+    @Column(name="ADDRESS")
+    private String address;
+    
+    @Column(name="DOB")
+    private Date dob;
+    
+    @Column(name="user_role")
+    private String role;
+    
+    public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	/*
     @Column(name="STATE", nullable=false)
     private String state=State.ACTIVE.getState();
  
@@ -44,7 +68,7 @@ public class User {
              joinColumns = { @JoinColumn(name = "USER_ID") }, 
              inverseJoinColumns = { @JoinColumn(name = "USER_PROFILE_ID") })
     private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
- 
+ */
     public int getId() {
         return id;
     }
@@ -92,7 +116,7 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
- 
+ /*
     public String getState() {
         return state;
     }
@@ -100,6 +124,7 @@ public class User {
     public void setState(String state) {
         this.state = state;
     }
+    /*
  
     public Set<UserProfile> getUserProfiles() {
         return userProfiles;
@@ -107,9 +132,34 @@ public class User {
  
     public void setUserProfiles(Set<UserProfile> userProfiles) {
         this.userProfiles = userProfiles;
-    }
- 
-    @Override
+    }*/
+    
+    public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+/*
+	@Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -144,5 +194,5 @@ public class User {
                 + ", email=" + email + ", state=" + state + ", userProfiles=" + userProfiles +"]";
     }
  
-     
+     */
 }

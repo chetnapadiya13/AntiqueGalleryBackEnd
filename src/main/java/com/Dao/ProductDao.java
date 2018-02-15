@@ -13,11 +13,11 @@ import com.Model.Product;
 public interface ProductDao {
 
 	public void insertProduct(Product product);
-	public void updateProduct(String pid);
-	public void deleteProduct(String pid);
+	public void updateProduct(int pid);
+	public void deleteProduct(int pid);
 	public void updateProduct(Product product);
 	public void deleteProduct(Product product);
 	public List<Product> showallProduct();
-	public Product getProduct(String pid);
+	public Product getProduct(int pid);
 	
 }

@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.Dao.CategoryDao;
 import com.Model.Category;
+import com.Model.User;
 import com.configuration.HibernateConfig;
 
 @Repository
@@ -26,7 +27,17 @@ public class CategoryDaoImpl implements CategoryDao {
 	@Autowired
 	SessionFactory sessionFactory;
 	
-
+	@Transactional
+	public List<Category> showallCatList()
+	{
+			HibernateConfig hbConfig = new HibernateConfig();
+			SessionFactory sessionF=hbConfig.getSessionFactory();
+			Session session=sessionF.openSession();
+			Query query=session.createQuery("from Category");
+			List<Category> category=(List<Category>) query.list();
+			session.close();
+			return category;
+	}
 	@Transactional//("txName")
 	public void insertCategory(Category category) {
 		try

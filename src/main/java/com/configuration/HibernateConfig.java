@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +13,9 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.Model.Cart;
 import com.Model.Category;
+import com.Model.Order;
 import com.Model.Product;
 import com.Model.Supplier;
 import com.Model.User;
@@ -26,6 +29,7 @@ public class HibernateConfig
 	public static SessionFactory sessionFactory = null;
 	
 	//Creating a DataSource Bean
+	@Bean("h2DataSource")
 	public DataSource getH2DataSource()
 	{
 		DriverManagerDataSource driverMgrDataSource=new DriverManagerDataSource();
@@ -58,6 +62,9 @@ public class HibernateConfig
 		localSessionFacBuilder.addAnnotatedClass(Category.class);
 		localSessionFacBuilder.addAnnotatedClass(Supplier.class);
 		localSessionFacBuilder.addAnnotatedClass(Product.class);
+		localSessionFacBuilder.addAnnotatedClass(Cart.class);
+		localSessionFacBuilder.addAnnotatedClass(Order.class);
+		
 		sessionFactory=localSessionFacBuilder.buildSessionFactory();
 		System.out.println("Session Factory Object Created");
 		

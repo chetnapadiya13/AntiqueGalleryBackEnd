@@ -17,5 +17,7 @@ public interface CategoryDao {
 	public void updateCategory(Category category);
 	public void deleteCategory(Category category);
 	public HashMap<Integer,String> showallCategory();
+	public List<Category> showallCatList();
+	
 	public Category getCategory(int cid);
 }
