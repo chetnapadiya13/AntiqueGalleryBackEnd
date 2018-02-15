@@ -42,7 +42,7 @@ public class CartDaoImpl implements CartDao {
 	@Transactional
 	public List<Cart> findCartById(String userEmail) 
 	{
-		// TODO Auto-generated method stub
+	/*	// TODO Auto-generated method stub
 		HibernateConfig hbConfig = new HibernateConfig();
 		SessionFactory sessionF=hbConfig.getSessionFactory();
 		Session session=sessionF.openSession();
@@ -50,7 +50,8 @@ public class CartDaoImpl implements CartDao {
 		query.setParameter("email",userEmail);
 		Cart <List>cartList=query.list();
 		return cartList;
-	
+		*/
+	return null;
 	}
 	@Transactional
 	public Cart getCartById(String email, int cartId) {
@@ -112,6 +113,10 @@ public class CartDaoImpl implements CartDao {
 		{
 			System.out.println("Exception Arised:"+e);
 		}
+		
+	}
+	public void updateCartById(int cartId) {
+		// TODO Auto-generated method stub
 		
 	}
 
