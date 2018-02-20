@@ -16,6 +16,6 @@ public interface SupplierDao {
 	public boolean insertSupp(Supplier supplier);
 	public boolean updateSupp(Supplier supplier);
 	public boolean deleteSupp(Supplier supplier);
-	public Supplier getSupplier(int sid);
-	public HashMap<Integer,String> getAllSuppliers();
+	public Supplier getSupplier(String sid);
+	public List<Supplier> getAllSuppliers();
 }

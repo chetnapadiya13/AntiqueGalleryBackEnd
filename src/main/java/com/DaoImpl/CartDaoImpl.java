@@ -29,7 +29,7 @@ public class CartDaoImpl implements CartDao {
 			sessionFactory=hbConfig.getSessionFactory();
 			Session session=sessionFactory.openSession();
 			session.beginTransaction();
-			Integer i=(Integer) session.save(cart);
+			session.save(cart);
 			session.getTransaction().commit();
 			session.close();
 		}
@@ -40,26 +40,31 @@ public class CartDaoImpl implements CartDao {
 		
 	}
 	@Transactional
-	public List<Cart> findCartById(String userEmail) 
+	public List<Cart> findCartById(String email) 
 	{
-	/*	// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 		HibernateConfig hbConfig = new HibernateConfig();
 		SessionFactory sessionF=hbConfig.getSessionFactory();
 		Session session=sessionF.openSession();
-		Query query=session.createQuery("from Cart where email=:userEmail");
-		query.setParameter("email",userEmail);
-		Cart <List>cartList=query.list();
+		Query query=session.createQuery("from Cart where email=:email");
+		query.setParameter("email",email);
+		List<Cart> cartList=query.list();
 		return cartList;
-		*/
-	return null;
 	}
 	@Transactional
 	public Cart getCartById(String email, int cartId) {
 		// TODO Auto-generated method stub
-		return null;
+		HibernateConfig hbConfig = new HibernateConfig();
+		SessionFactory sessionF=hbConfig.getSessionFactory();
+		Session session=sessionF.openSession();
+		Query query=session.createQuery("from Cart where email=:email and cartId=:cartId");
+		query.setParameter("email",email);
+		query.setParameter("cartId", cartId);
+		Cart cartList= (Cart) query.getSingleResult();
+		return cartList;
 	}
 	@Transactional
-	public void deleteCart(int cartId) {
+	public void deleteCart(Cart cart) {
 		// TODO Auto-generated method stub
 		try
 		{
@@ -67,7 +72,7 @@ public class CartDaoImpl implements CartDao {
 			sessionFactory=hbConfig.getSessionFactory();
 			Session session=sessionFactory.openSession();
 			session.beginTransaction();
-			session.delete(cartId);
+			session.delete(cart);
 			session.getTransaction().commit();
 			session.close();
 		}
@@ -115,7 +120,7 @@ public class CartDaoImpl implements CartDao {
 		}
 		
 	}
-	public void updateCartById(int cartId) {
+	public void updateCartById(String email) {
 		// TODO Auto-generated method stub
 		
 	}

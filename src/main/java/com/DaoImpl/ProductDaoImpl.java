@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.Dao.ProductDao;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,7 +33,7 @@ public class ProductDaoImpl implements ProductDao{
 			SessionFactory sessionfac=hbConfig.getSessionFactory();
 			Session session=sessionfac.openSession();
 			session.beginTransaction();
-			Integer i=(Integer) session.save(product);
+		session.save(product);
 			session.getTransaction().commit();
 			session.close();
 		}
@@ -70,7 +71,8 @@ public class ProductDaoImpl implements ProductDao{
 			SessionFactory sessionfac=hbConfig.getSessionFactory();
 			Session session=sessionfac.openSession();
 			session.beginTransaction();
-			session.delete(pid);
+			Product product = session.load(Product.class, pid);
+			session.delete(product);
 			session.getTransaction().commit();
 			session.close();
 		}
@@ -122,8 +124,8 @@ public class ProductDaoImpl implements ProductDao{
 		HibernateConfig hbConfig = new HibernateConfig();
 		SessionFactory sessionF=hbConfig.getSessionFactory();
 		Session session=sessionF.openSession();
-		Query query=session.createQuery("from product");
-		List<Product> product=query.list();
+		Query query=session.createQuery("from Product");
+		List<Product> product = query.list();
 		session.close();
 		return product;
 	}
@@ -137,5 +139,15 @@ public class ProductDaoImpl implements ProductDao{
 		Product product=(Product) query.uniqueResult();
 		return product;
 	}
-
+	@Transactional//("txName")
+	public List<Product> getProductByCategory(int category) {
+		HibernateConfig hbConfig = new HibernateConfig();
+		SessionFactory sessionF=hbConfig.getSessionFactory();
+		@SuppressWarnings("deprecation")
+		Session session=sessionF.openSession();
+		Query criteria=session.createQuery("from Product where cid=:cid");
+		criteria.setParameter("cid", category);
+		List<Product> products = criteria.getResultList();
+		return products;
+	}
 }

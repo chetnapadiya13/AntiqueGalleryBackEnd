@@ -30,7 +30,7 @@ public class SupplierDaoImpl implements SupplierDao {
 			SessionFactory sessionfac=hbConfig.getSessionFactory();
 			Session session=sessionfac.openSession();
 			session.beginTransaction();
-			Integer i=(Integer) session.save(supplier);
+		    session.save(supplier);
 			session.getTransaction().commit();
 			session.close();
 			return true;
@@ -82,31 +82,26 @@ public class SupplierDaoImpl implements SupplierDao {
 		}
 	}
 	@Transactional//("txName")
-	public HashMap<Integer,String> getAllSuppliers() {
+	public List<Supplier> getAllSuppliers() {
 		
-		List<Supplier> supplierList = new ArrayList<Supplier>();
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Query<Supplier> query = session.createQuery("FROM Supplier");
+		List<Supplier> supplierList = query.list();
+		session.getTransaction().commit();
+		return supplierList;
+	}
+	public Supplier getSupplier(String sid) {
 		HibernateConfig hbConfig = new HibernateConfig();
 		sessionFactory=hbConfig.getSessionFactory();
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
-		supplierList = (List<Supplier>) session.createQuery("from Supplier").list();
-		HashMap<Integer,String> supplierMap = new HashMap<Integer, String>();
-		for(Supplier supplier:supplierList)
-		{
-			supplierMap.put(supplier.getSid(),supplier.getSupplierName());
-		}
-		session.close();
-		return supplierMap;
+		Supplier supplier = session.get(Supplier.class, sid);
+		session.getTransaction().commit();
+		return supplier;
 	}
-	public Supplier getSupplier(int sid) {
-		HibernateConfig hbConfig = new HibernateConfig();
-		sessionFactory=hbConfig.getSessionFactory();
-		Session session=sessionFactory.openSession();
-		session.beginTransaction();
-		Query  cri = session.createQuery("from Supplier where sid="+sid);
-		Supplier supp = (Supplier) cri.getSingleResult();
-		return supp;
-	}
+	
+
 }
 
 

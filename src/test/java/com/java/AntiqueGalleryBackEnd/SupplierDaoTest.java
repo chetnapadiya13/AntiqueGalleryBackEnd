@@ -41,7 +41,7 @@ public class SupplierDaoTest {
 	{
 		Supplier supplier=new Supplier();
 	//	supplier.setId(102);
-		supplier.setSid(102);
+		supplier.setSid("102");
 		supplier.setSupplierName("xyz");
 		
 		assertTrue("Problem in Adding supplier",supplierDao.insertSupp(supplier));
@@ -52,7 +52,7 @@ public class SupplierDaoTest {
 	{
 		Supplier supplier=new Supplier();
 	//	supplier.setId(102);
-		supplier.setSid(102);
+		supplier.setSid("102");
 		supplier.setSupplierName("xyz");
 		
 		assertTrue("Problem in Adding supplier",supplierDao.updateSupp(supplier));
@@ -63,7 +63,7 @@ public class SupplierDaoTest {
 	{
 		Supplier supplier=new Supplier();
 	//	supplier.setId(102);
-		supplier.setSid(102);
+		supplier.setSid("102");
 		supplier.setSupplierName("xyz");
 		
 		assertTrue("Problem in Adding supplier",supplierDao.deleteSupp(supplier));

@@ -1,34 +1,39 @@
 package com.Model;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
-import javax.persistence.*;
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-import org.hibernate.validator.constraints.*;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-@Service 
-@Component  
+
+@Component
 @Entity
-@Table(name = "Category")
-public class Category {
-	
+public class Category implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="cid")
-	private int cid;
-	@Column(name="cname")
+	private String cid;
 	private String cname;
 	
-	@OneToMany(targetEntity=Product.class,fetch=FetchType.EAGER,mappedBy="category")
-	private Set<Product> products=new HashSet<Product>(0);
-	public int getCid() {
+	@OneToMany(targetEntity=Product.class, fetch= FetchType.EAGER, mappedBy = "category" )
+	private Set<Product> products = new HashSet<Product>(0);
+	
+	public Set<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+	public String getCid() {
 		return cid;
 	}
-	public void setCid(int cid) {
+	public void setCid(String cid) {
 		this.cid = cid;
 	}
 	public String getCname() {
@@ -37,11 +42,4 @@ public class Category {
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
-	public Set<Product> getProducts() {
-		return products;
-	}
-	public void setProducts(Set<Product> products) {
-		this.products = products;
-	}
-	
 }

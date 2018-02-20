@@ -16,7 +16,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.h2.store.Data;
-
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+@Service 
+@Component
 @Entity
 @Table(name="APP_USER")
 public class User {
@@ -24,7 +27,7 @@ public class User {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
  
-    @Column(name="SSO_ID", unique=true, nullable=false)
+    @Column(name="username", unique=true, nullable=false)
     private String ssoId;
      
     @Column(name="PASSWORD", nullable=false)

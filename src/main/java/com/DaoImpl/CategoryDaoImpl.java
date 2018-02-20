@@ -46,7 +46,7 @@ public class CategoryDaoImpl implements CategoryDao {
 			sessionFactory=hbConfig.getSessionFactory();
 			Session session=sessionFactory.openSession();
 			session.beginTransaction();
-			Integer i=(Integer) session.save(category);
+			session.save(category);
 			session.getTransaction().commit();
 			session.close();
 		}
@@ -58,7 +58,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
  
 	@Transactional//("txName")
-	public void updateCategory(int cid) {
+	public void updateCategory(String cid) {
 		// TODO Auto-generated method stub
 		try
 		{
@@ -78,7 +78,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	@Transactional//("txName")
-	public void deleteCategory(int cid) {
+	public void deleteCategory(String cid) {
 		// TODO Auto-generated method stub
 		try
 		{
@@ -137,7 +137,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 	
 
-	@Transactional//("txName")
+/*	@Transactional//("txName")
 	public HashMap<Integer,String> showallCategory() {
 		// TODO Auto-generated method stub
 		HibernateConfig hbConfig = new HibernateConfig();
@@ -153,10 +153,10 @@ public class CategoryDaoImpl implements CategoryDao {
 		session.close();
 		return categoryMap;
 	}
-
+*/
 
 	 @Transactional//("txName")
-	public Category getCategory(int cid) {
+	public Category getCategory(String cid) {
 		HibernateConfig hbConfig = new HibernateConfig();
 		sessionFactory=hbConfig.getSessionFactory();
 		Session session=sessionFactory.openSession();

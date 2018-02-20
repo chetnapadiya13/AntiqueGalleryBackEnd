@@ -19,5 +19,6 @@ public interface ProductDao {
 	public void deleteProduct(Product product);
 	public List<Product> showallProduct();
 	public Product getProduct(int pid);
+	public List<Product> getProductByCategory(int pid);
 	
 }

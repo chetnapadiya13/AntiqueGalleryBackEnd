@@ -6,7 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
- 
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+@Service 
+@Component
 @Entity
 @Table(name="USER_PROFILE")
 public class UserProfile {
@@ -15,7 +19,7 @@ public class UserProfile {
     private int id; 
  
     @Column(name="TYPE", length=15, unique=true, nullable=false)
-    private String type = UserProfileType.USER.getUserProfileType();
+    private String type ;
      
     public int getId() {
         return id;

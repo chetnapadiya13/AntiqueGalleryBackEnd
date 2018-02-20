@@ -13,9 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 @Service 
 @Component 
-@Entity
-@Table(name="Cart")
-public class Order {
+@Entity(name="Orders")
+public class Order implements Serializable{
 			
 		@GeneratedValue
 		@Id
@@ -32,7 +31,7 @@ public class Order {
 		@Column(name="totalAmount")
 		private double totalAmount;
 		
-		public Order(){}
+		public Order(){super();}
 
 		public Order(int orderId, User user, String paymentMode, double totalAmount) {
 			super();
@@ -73,9 +72,5 @@ public class Order {
 		public void setTotalAmount(double totalAmount) {
 			this.totalAmount = totalAmount;
 		}
-		
-		
-		
-		
-		
+
 }

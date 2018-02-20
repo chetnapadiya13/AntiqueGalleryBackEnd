@@ -11,11 +11,12 @@ import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.*;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
 @Service 
 @Component 
-@Entity
-@Table(name="Cart")
-public class Cart {
+@Entity(name="Cart")
+public class Cart implements Serializable  {
+	
 	@Id
 	@GeneratedValue
 	private int cartId;
@@ -23,9 +24,9 @@ public class Cart {
 	@Column(name="cartProductId")
 	private int cartProductId;
 	
-	//onetoone with user need to develop
-	@Column(name="email")
-	private String userEmail;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="email")
+	private User userEmail;
 	
 	@Column(name="cartPrice")
 	private double cartPrice;
@@ -39,10 +40,9 @@ public class Cart {
 	@Column(name="cartProductName")
 	private String cartProductName;
 	
-	public Cart()
-	{}
+	public Cart(){super();}
 
-	public Cart(int cartId, int cartProductId, String userEmail, double cartPrice, int cartQty, String cartImage,
+	public Cart(int cartId, int cartProductId, User userEmail, double cartPrice, int cartQty, String cartImage,
 			String cartProductName) {
 		super();
 		this.cartId = cartId;
@@ -70,11 +70,11 @@ public class Cart {
 		this.cartProductId = cartProductId;
 	}
 
-	public String getUserEmail() {
+	public User getUserEmail() {
 		return userEmail;
 	}
 
-	public void setUserEmail(String userEmail) {
+	public void setUserEmail(User userEmail) {
 		this.userEmail = userEmail;
 	}
 
@@ -109,7 +109,6 @@ public class Cart {
 	public void setCartProductName(String cartProductName) {
 		this.cartProductName = cartProductName;
 	}
-	
 	
 	
 	
